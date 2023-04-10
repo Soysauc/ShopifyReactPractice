@@ -17,7 +17,7 @@ import {
   SimpleGrid,
   Link,
 } from "@chakra-ui/react";
-// import { CloseIcon } from "@chakra-ui/icons";
+import { CloseIcon } from "@chakra-ui/icons";
 
 const Cart = () => {
   const { isCartOpen, closeCart, checkout, removeLineItem } =
@@ -50,10 +50,10 @@ const Cart = () => {
                           alignItems="center"
                           justifyContent="center"
                         >
-                          {/* <CloseIcon
+                          <CloseIcon
                             cursor="pointer"
                             onClick={() => removeLineItem(item.id)}
-                          /> */}
+                          />
                         </Box>
                         <Box
                           display="flex"
@@ -80,7 +80,7 @@ const Cart = () => {
                             align="center"
                             justifyContent="center"
                           >
-                            {item.variant.price}
+                            {item.variant.price.amount}
                           </Text>
                         </Box>
                       </Grid>
@@ -102,7 +102,7 @@ const Cart = () => {
             </DrawerBody>
             <DrawerFooter>
               <Button w="100%">
-                <Link w="100%" href={checkout?.webUrl}>
+                <Link w="100%" href={checkout.webUrl}>
                   Checkout
                 </Link>
               </Button>
