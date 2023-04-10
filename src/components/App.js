@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import Home from "./pages/Home";
-import ProductPage from "./pages/ProductPage";
-import Navbar from "./components/NavBar";
-import Cart from "./components/Cart";
-import NavMenu from "./components/NavMenu";
-import Footer from "./components/Footer";
+import HomePage from "../pages/HomePage";
+import ProductPage from "../pages/ProductPage";
+import Navbar from "../components/NavBar";
+import Cart from "../components/Cart";
+import NavMenu from "../components/NavMenu";
+import Footer from "./Footer";
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
             <ProductPage />
           </Route>
           <Route path="/">
-            <Home />
+            <HomePage />
           </Route>
         </Switch>
         <Footer />

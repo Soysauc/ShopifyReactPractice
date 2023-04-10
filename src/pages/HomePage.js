@@ -6,7 +6,7 @@ import Hero from "../components/Hero";
 import RichText from "../components/RichText";
 import ImageWithText from "../components/ImageWithText";
 
-const Home = () => {
+const HomePage = () => {
   const { fetchAllProducts, products } = useContext(ShopContext);
 
   useEffect(() => {
@@ -60,4 +60,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;
