@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 
 import { ShopContext } from "../context/shopContext";
-// import RichText from "../components/RichText";
+import RichText from "../components/RichText";
 
 const ProductPage = () => {
   let { handle } = useParams();
@@ -69,7 +69,7 @@ const ProductPage = () => {
           </Box>
         </Grid>
       </Box>
-      {/* <RichText heading="Rated the best Bath Bombs of 2020!" /> */}
+      <RichText heading="Rated the best Bath Bombs of 2020!" />
       <Center fontWeight="bold" pb="2rem">
         You Might also like
       </Center>

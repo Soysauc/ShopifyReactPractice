@@ -4,14 +4,14 @@ import Client from "shopify-buy";
 const ShopContext = React.createContext();
 
 const client = Client.buildClient({
-  domain: process.env.REACT_APP_SHOPIFY_DOMAIN,
   storefrontAccessToken: process.env.REACT_APP_SHOPIFY_API,
+  domain: process.env.REACT_APP_SHOPIFY_DOMAIN,
 });
 
 class ShopProvider extends Component {
   state = {
-    product: {},
     products: [],
+    product: {},
     checkout: {},
     isCartOpen: false,
     isMenuOpen: false,
@@ -27,14 +27,17 @@ class ShopProvider extends Component {
 
   createCheckout = async () => {
     const checkout = await client.checkout.create();
-    localStorage.setItem("checkout-id", checkout.id);
+    localStorage.setItem("checkout_id", checkout.id);
     this.setState({ checkout: checkout });
   };
 
-  fetchCheckout = (checkoutId) => {
-    client.checkout.fetch(checkoutId).then((checkout) => {
-      this.setState({ checkout: checkout });
-    });
+  fetchCheckout = async (checkoutId) => {
+    client.checkout
+      .fetch(checkoutId)
+      .then((checkout) => {
+        this.setState({ checkout: checkout });
+      })
+      .catch((error) => console.log(error));
   };
 
   addItemToCheckout = async (variantId, quantity) => {
@@ -52,6 +55,7 @@ class ShopProvider extends Component {
 
     this.openCart();
   };
+
   removeLineItem = async (lineItemIdsToRemove) => {
     const checkoutId = this.state.checkout.id;
 
@@ -59,6 +63,7 @@ class ShopProvider extends Component {
       .removeLineItems(checkoutId, lineItemIdsToRemove)
       .then((checkout) => this.setState({ checkout }));
   };
+
   fetchAllProducts = async () => {
     const products = await client.product.fetchAll();
     this.setState({ products: products });
@@ -67,6 +72,7 @@ class ShopProvider extends Component {
   fetchProductWithHandle = async (handle) => {
     const product = await client.product.fetchByHandle(handle);
     this.setState({ product: product });
+
     return product;
   };
 
@@ -104,6 +110,7 @@ class ShopProvider extends Component {
     );
   }
 }
+
 const ShopConsumer = ShopContext.Consumer;
 
 export { ShopConsumer, ShopContext };
